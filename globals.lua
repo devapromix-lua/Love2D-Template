@@ -36,8 +36,8 @@ CONFIG = {
             font            = nil, -- set after fonts are created
             fontSize        = 16,
             lineHeight      = 18,
-            foreground      = {255, 255, 255, 225},
-            shadow          = {0, 0, 0, 225},
+            foreground      = {1, 1, 1, 1},
+            shadow          = {0, 0, 0, 1},
             shadowOffset    = {x = 1, y = 1},
             position        = {x = 8, y = 6},
 
@@ -48,21 +48,12 @@ CONFIG = {
         error = {
             font            = nil, -- set after fonts are created
             fontSize        = 16,
-            background      = {26, 79, 126},
-            foreground      = {255, 255, 255},
-            shadow          = {0, 0, 0, 225},
+            background      = {.1, .31, .5},
+            foreground      = {1, 1, 1},
+            shadow          = {0, 0, 0, .88},
             shadowOffset    = {x = 1, y = 1},
             position        = {x = 70, y = 70},
         },
-
-        lovebird = {
-            port = 8000,
-            wrapPrint = true,
-            echoInput = true,
-            updateInterval = 0.2,
-            maxLines = 200,
-            openInBrowser = false,
-        }
     }
 }
 
@@ -106,19 +97,5 @@ Camera  = require 'libs.camera'
 Timer   = require 'libs.timer'
 
 States = {
-    menu = require 'states.menu',
     game = require 'states.game',
 }
-
-if DEBUG then
-    Lovebird = require 'libs.lovebird'
-    Lovebird.port = CONFIG.debug.lovebird.port
-    Lovebird.wrapprint = CONFIG.debug.lovebird.wrapPrint
-    Lovebird.echoinput = CONFIG.debug.lovebird.echoInput
-    Lovebird.updateinterval = CONFIG.debug.lovebird.updateInterval
-    Lovebird.maxlines = CONFIG.debug.lovebird.maxLines
-    print('Running lovebird on localhost:' .. Lovebird.port)
-    if CONFIG.debug.lovebird.openInBrowser then
-        love.system.openURL("http://localhost:" .. Lovebird.port)
-    end
-end
